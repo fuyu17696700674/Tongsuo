@@ -18,13 +18,13 @@ void InitRandom(unsigned int seedBase)
     m_intermediateOffset = permuteQPR(permuteQPR(seedOffset) + 0x46790905);
 }
 
-unsigned int cus_random()
+unsigned int cus_random(void)
 {
     return permuteQPR((permuteQPR(m_index++) + m_intermediateOffset) ^ 0x5bf03635);
 }
 unsigned int randseed;
 //8bit internal xor table
-int xor [] = { 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0,
+static int xor [] = { 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0,
                1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0,
                1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0,
                1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0,
@@ -1787,7 +1787,7 @@ void MatMulVecM128(M128 Mat, V128 Vec, V128* ans)//matrix * vector -> vector 128
 void genMatpairM4(M4* Mat, M4* Mat_inv)//generate 4*4 invertible matrix and its inverse matrix
 {
     int i, j, t, k;
-    int p, q;
+    int p;
     M4 tempMat;
     M4 resultMat;
     uint8_t temp;
@@ -1944,7 +1944,7 @@ void genMatpairM4(M4* Mat, M4* Mat_inv)//generate 4*4 invertible matrix and its 
 void genMatpairM8(M8* Mat, M8* Mat_inv)//generate 8*8 invertible matrix and its inverse matrix
 {
     int i, j, t, k;
-    int p, q;
+    int p;
     M8 tempMat;
     M8 resultMat;
     uint8_t temp;
@@ -2101,7 +2101,7 @@ void genMatpairM8(M8* Mat, M8* Mat_inv)//generate 8*8 invertible matrix and its 
 void genMatpairM16(M16* Mat, M16* Mat_inv)//generate 16*16 invertible matrix and its inverse matrix
 {
     int i, j, t, k;
-    int p, q;
+    int p;
     M16 tempMat;
     M16 resultMat;
     uint16_t temp;
@@ -2258,7 +2258,7 @@ void genMatpairM16(M16* Mat, M16* Mat_inv)//generate 16*16 invertible matrix and
 void genMatpairM32(M32* Mat, M32* Mat_inv)//generate 32*32 invertible matrix and its inverse matrix
 {
     int i, j, t, k;
-    int p, q;
+    int p;
     M32 tempMat;
     M32 resultMat;
     uint32_t temp;
@@ -2415,7 +2415,7 @@ void genMatpairM32(M32* Mat, M32* Mat_inv)//generate 32*32 invertible matrix and
 void genMatpairM64(M64* Mat, M64* Mat_inv)//generate 64*64 invertible matrix and its inverse matrix
 {
     int i, j, t, k;
-    int p, q;
+    int p;
     M64 tempMat;
     M64 resultMat;
     uint64_t temp;
@@ -2572,7 +2572,7 @@ void genMatpairM64(M64* Mat, M64* Mat_inv)//generate 64*64 invertible matrix and
 void genMatpairM128(M128* Mat, M128* Mat_inv)//generate 128*128 invertible matrix and its inverse matrix
 {
     int i, j, t, k;
-    int p, q;
+    int p;
     M128 tempMat;
     M128 resultMat;
     uint64_t temp;

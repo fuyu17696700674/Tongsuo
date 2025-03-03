@@ -2,7 +2,7 @@
 #include <string.h> 
 #include "crypto/sm4.h"
 
-uint8_t  SBOX[256] = {
+static uint8_t  SBOX[256] = {
     0xd6, 0x90, 0xe9, 0xfe, 0xcc, 0xe1, 0x3d, 0xb7,
     0x16, 0xb6, 0x14, 0xc2, 0x28, 0xfb, 0x2c, 0x05,
     0x2b, 0x67, 0x9a, 0x76, 0x2a, 0xbe, 0x04, 0xc3,
@@ -102,6 +102,15 @@ static void wbsm4_gen_part3(WB_SM4_Tables* tables);
 static void wbsm4_gen_part4_1(WB_SM4_Tables* tables);
 static void wbsm4_gen_part4_2(WB_SM4_Tables* tables);
 static void wbsm4_gen_part4_3(WB_SM4_Tables* tables);
+
+
+void swap(uint8_t* a, uint8_t* b)
+void generate_S_box_and_inverse(uint8_t* mapping);
+void genNonlinearPair(Nonlinear8* nl, Nonlinear8* nl_inv);
+uint8_t nonlinearU8(Nonlinear8* n8, uint8_t arr);
+uint32_t nonlinearU32(const Nonlinear32* n32, uint32_t arr);
+void printstate(unsigned char* in);
+
 // 交换函数，用于打乱 S 盒
 void swap(uint8_t* a, uint8_t* b) {
     uint8_t temp = *a;
